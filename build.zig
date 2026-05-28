@@ -6,7 +6,10 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     const upstream = b.dependency("theora", .{});
-    const ogg = b.dependency("libogg", .{});
+    const ogg = b.dependency("libogg", .{
+        .target = target,
+        .optimize = optimize,
+    });
 
     const theora = b.addModule("theora", .{
         .target = target,
